@@ -1,12 +1,16 @@
 import React from 'react'
 import Home from './Home'
+import {Route} from "react-router-dom"
+import Cuisine from "./Cuisine"
 
 
 function Pages() {
   return (
     <div>
-        <Home/>
+       <Route path="/" exact component={Home}/>
+       <Route path="/cuisine/:type" exact component={Cuisine}/>
     </div>
+    
   )
 }
 
