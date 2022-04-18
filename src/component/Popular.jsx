@@ -16,7 +16,6 @@ function Popular() {
   const getPopular = async() => {
 
     const check = localStorage.getItem('popular')
-    console.log("CHECK: ",check);
 
     if (check){
       setPopular(JSON.parse(check))

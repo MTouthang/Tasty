@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react"
 // import styled from 'styled-components'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 function Cuisine() {
     const [cuisine, setCuisine] = useState([]);
-    const params = useParams();
-
-    console.log("useParams: ", params);
+    let params = useParams();
+    console.log(params);
     
     const getCuisine = async(name) => {
         const data = await fetch(
@@ -19,14 +18,13 @@ function Cuisine() {
     
 
     useEffect(() =>{
-        getCuisine(params.type)
         console.log(params.type);
-    }, [params.type])
+    }, [params.type]);
     
     
     return (
        <div>
-           
+           <h2> THis is the italian</h2>
        </div>
     )
 };
