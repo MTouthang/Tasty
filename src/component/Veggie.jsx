@@ -1,7 +1,8 @@
 import React from 'react'
-
+import styled from 'styled-components'
 import { useEffect, useState } from "react"
-import {Wrapper, Card, Gradient } from './Popular'
+import { Link } from 'react-router-dom'
+
 import {Splide, SplideSlide} from "@splidejs/react-splide"
 import "@splidejs/splide/dist/css/splide.min.css"
 
@@ -41,17 +42,22 @@ export function Veggie(props) {
             arrows: false,
             pagination: false,
             drag: "free",
-            gap: "5rem"
+            gap: "2rem"
           }}
           >
             {veggie.map((recipes) => {
               return (
                <SplideSlide key={recipes.id}>
+                
                  <Card >
-                  <p>  {recipes.title}</p>
+                   <Link to={"recipe/" + recipes.id}>
+                   <p>  {recipes.title}</p>
                   <img src={recipes.image} alt={recipes.title}/>
                   <Gradient />
+                   </Link>
+                  
                 </Card>
+             
               </SplideSlide>
                      );
                })}
@@ -60,3 +66,51 @@ export function Veggie(props) {
     </div>
     )
 }
+
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+  `;
+
+
+const Card = styled.div`
+  min-height: 14rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    border-radius: 2rem;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  p{
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, 0%);
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+`;
+
+const Gradient = styled.div`
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0),rgba(0, 0, 0, 0.5));
+`
+
+export default Veggie;

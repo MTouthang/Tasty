@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import {Splide, SplideSlide} from "@splidejs/react-splide"
 import "@splidejs/splide/dist/css/splide.min.css"
+import {Link} from "react-router-dom"
+
 
 function Popular() {
 
@@ -27,7 +29,6 @@ function Popular() {
     
     localStorage.setItem("popular", JSON.stringify(data.recipes));
     setPopular(data.recipes);
-    console.log(data.recipes);
   }
   }
 
@@ -41,16 +42,18 @@ function Popular() {
             arrows: false,
             pagination: false,
             drag: "free",
-            gap: "5rem"
+            gap: "2rem"
           }}
           >
             {popular.map((recipes) => {
               return (
                <SplideSlide key={recipes.id}>
                  <Card >
-                  <p>  {recipes.title}</p>
-                  <img src={recipes.image} alt={recipes.title}/>
-                  <Gradient />
+                   <Link to={"/recipe/" + recipes.id}>
+                    <p>  {recipes.title}</p>
+                    <img src={recipes.image} alt={recipes.title}/>
+                    <Gradient />
+                   </Link>
                 </Card>
               </SplideSlide>
                      );
@@ -61,13 +64,13 @@ function Popular() {
   );
 }
 
- export const Wrapper = styled.div`
+const Wrapper = styled.div`
   margin: 4rem 0rem;
   `;
 
 
-export const Card = styled.div`
-  min-height: 25rem;
+const Card = styled.div`
+  min-height: 14rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
@@ -99,7 +102,7 @@ export const Card = styled.div`
   }
 `;
 
-export const Gradient = styled.div`
+const Gradient = styled.div`
   z-index: 3;
   position: absolute;
   width: 100%;
